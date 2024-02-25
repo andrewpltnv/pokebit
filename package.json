@@ -12,6 +12,7 @@
   "dependencies": {
     "@ahooksjs/use-url-state": "^3.5.1",
     "@reduxjs/toolkit": "^2.2.1",
+    "antd": "^5.14.2",
     "axios": "^1.6.7",
     "localforage": "^1.10.0",
     "match-sorter": "^6.3.4",
