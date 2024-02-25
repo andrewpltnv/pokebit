@@ -10,7 +10,6 @@ export default function Filters() {
 
 	return (
 		<div className="flex gap-6 m-4">
-			{" "}
 			<input ref={inputRef} type="number" />
 			<button
 				type="button"
@@ -32,7 +31,6 @@ export const Pagination = () => {
 
 	return (
 		<div className=" m-4 p-2 text-center border-2">
-			<h3>Pagination</h3>
 			<form className=" flex justify-evenly m-4 p-2 border-2">
 				<button type="button" onClick={() => handlePag("prev")}>
 					Previous
