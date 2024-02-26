@@ -2,7 +2,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { ListResponse, PokemonInfoEntry } from "./types";
 
 const baseUrl: string = "https://pokeapi.co/api/v2/";
-const LIMIT = 144;
+const LIMIT = 12;
 
 export const api = createApi({
 	reducerPath: "rootListing",

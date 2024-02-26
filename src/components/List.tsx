@@ -34,7 +34,7 @@ export function List() {
 	if (isLoading) return <Spin />;
 
 	return (
-		<div className="p-4 flex flex-wrap">
+		<div className="grid grid-cols-3 items-center justify-center place-items-center self-center gap-16">
 			{data?.results.map(({ name, url }, i) => (
 				<PokemonPreview name={name} url={url} id={i + 1} />
 			))}
