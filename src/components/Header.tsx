@@ -1,3 +1,13 @@
+import { Link } from "react-router-dom";
+import { SearchByName } from "./SearchByName";
+
 export function Header() {
-    return <h1 className="text-3xl  p-4 font-black text-yellow-300 bg-rose-500">Pokedex</h1>;
+	return (
+		<nav className="bg-rose-500 inline-flex text-center justify-evenly">
+			<Link to="/" className="text-3xl  font-black text-yellow-300 p-4">
+				Pokedex
+			</Link>
+			<SearchByName />
+		</nav>
+	);
 }
