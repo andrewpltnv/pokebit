@@ -1,11 +1,9 @@
 import { configureStore } from "@reduxjs/toolkit";
-import paginationReducer from "./paginationSlice";
 import { api } from "./api";
 import { setupListeners } from "@reduxjs/toolkit/query";
 
 export const store = configureStore({
 	reducer: {
-		pagination: paginationReducer,
 		[api.reducerPath]: api.reducer,
 	},
 	middleware: (getDefaultMiddlware) =>

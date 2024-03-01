@@ -1,29 +1,18 @@
 import { Header } from "./components/Header";
-import { PokemonListPagination } from "./components/Filters";
-import { List } from "./components/List";
 import { Outlet } from "react-router-dom";
-import { MainClient } from "pokenode-ts";
-const client = new MainClient();
-const uff = client.pokemon.getPokemonById(1);
-const ufg = client.pokemon.listPokemons();
-console.log(uff, ufg);
+import FloatButton from "antd/es/float-button/FloatButton";
+import { App } from "antd";
 
 function RootLayout() {
 	return (
-		<div className="flex flex-col bg-slate-600">
-			<Header />
-			<Outlet />
-		</div>
+		<App>
+			<div className="flex flex-col min-h-svh bg-slate-300">
+				<Header />
+				<Outlet />
+				<FloatButton.BackTop />
+			</div>
+		</App>
 	);
 }
 
-function RootPage() {
-	return (
-		<>
-			<List />
-			<PokemonListPagination />
-		</>
-	);
-}
-
-export { RootPage, RootLayout };
+export { RootLayout };

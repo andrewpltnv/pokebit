@@ -2,7 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
-#root{
-    min-height: 100dvh;
-    min-width: 100dvw;
+:root {
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  min-height: 100vh;
+  min-width: 100dvw;
 }
