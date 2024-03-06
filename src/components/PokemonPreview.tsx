@@ -1,25 +1,32 @@
 import { Link } from "react-router-dom";
 import { PokemonInfoEntry } from "../app/types";
+import { Card, Image, Space, Tag } from "antd";
 
 const PokemonPreview = (pokemon: PokemonInfoEntry) => {
-	const { name, types, sprite } = pokemon;
+  const { name, types, sprite } = pokemon;
 
-	return (
-		<Link
-			to={`name/${name}`}
-			className="w-72 bg-slate-200 rounded-2xl h-96 align-middle grid grid-rows-[5fr_1fr_1fr] items-center justify-center"
-		>
-			<img src={sprite || ""} className=" w-auto h-full" alt={name} />
-			<h3>{name}</h3>
-			<div className="inline-flex gap-4">
-				{types.map((pt) => (
-					<span className="border-4 p-2" key={pt.type.name}>
-						{pt.type.name}
-					</span>
-				))}
-			</div>
-		</Link>
-	);
+  return (
+    <Card
+      cover={
+        <Link to={`/name/${name}`} className="p-2">
+          <Image src={`${sprite}`} preview={false} />
+        </Link>
+      }
+      hoverable
+      className="flex h-auto w-72  flex-col justify-end"
+    >
+      <h3 className="text-2xl">{name.toUpperCase()}</h3>
+      <Space.Compact direction="horizontal">
+        {types.map((pt) => (
+          <Link to={`/type/${pt.type.name}`}>
+            <Tag color="cyan" key={pt.type.name}>
+              {pt.type.name}
+            </Tag>
+          </Link>
+        ))}
+      </Space.Compact>
+    </Card>
+  );
 };
 
 export default PokemonPreview;

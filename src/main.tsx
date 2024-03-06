@@ -8,49 +8,56 @@ import { store } from "./app/store.ts";
 import PokemonDetailsPage from "./pages/PokemonDetailsPage";
 import { ErrorElement } from "./components/ErrorElement.tsx";
 import RootListPage from "./pages/RootList/index.tsx";
-import { api, client } from "./app/api.ts";
+import { PokemonClient } from "pokenode-ts";
+import { cropPokemonData } from "./app/utils.ts";
+import { ConfigProvider } from "antd";
+import { themeToken } from "./utils.ts";
+
+const client = new PokemonClient({ logs: true });
 
 const root = document.getElementById("root");
 if (!root) throw "There is no root element";
 
 const router = createBrowserRouter([
-	{
-		element: <RootLayout />,
-		errorElement: <ErrorElement />,
-		children: [
-			{
-				path: "/",
-				index: true,
-				element: <RootListPage />,
-			},
-			{
-				path: "/type/:type",
-				element: <div>Type</div>,
-				loader: async ({ params }) => {
-					const res = await client.pokemon.getTypeByName(`${params.type}`);
-					return json(res);
-				},
-			},
-			{
-				path: "/name/:name",
-				element: <PokemonDetailsPage />,
-				loader: async ({ params }) => {
-					const res = await client.pokemon.getPokemonByName(`${params.name}`);
-					return json(res);
-				},
-			},
-			{
-				path: "*",
-				element: <ErrorElement />,
-			},
-		],
-	},
+  {
+    element: <RootLayout />,
+    errorElement: <ErrorElement />,
+    children: [
+      {
+        path: "/",
+        index: true,
+        element: <RootListPage />,
+      },
+      {
+        path: "/type/:type",
+        element: <div>Type</div>,
+        loader: async ({ params }) => {
+          const res = await client.getTypeByName(`${params.type}`);
+          return json(res);
+        },
+      },
+      {
+        path: "/name/:name",
+        element: <PokemonDetailsPage />,
+        loader: async ({ params }) => {
+          const res = await client.getPokemonByName(`${params.name}`);
+          return json(cropPokemonData(res));
+        },
+      },
+      {
+        path: "*",
+        element: <ErrorElement />,
+      },
+    ],
+  },
 ]);
 
 ReactDOM.createRoot(root).render(
-	<React.StrictMode>
-		<Provider store={store}>
-			<RouterProvider router={router} />
-		</Provider>
-	</React.StrictMode>,
+  <React.StrictMode>
+    <Provider store={store}>
+      <ConfigProvider theme={{ token: themeToken }}>
+        <RouterProvider router={router} />
+      </ConfigProvider>
+    </Provider>
+  </React.StrictMode>,
 );
