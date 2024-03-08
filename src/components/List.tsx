@@ -1,5 +1,5 @@
 import { useGetPokemonsPerPageQuery } from "../app/api";
-import { Spin } from "antd";
+import { Flex, Grid, Spin } from "antd";
 import PokemonPreview from "./PokemonPreview";
 import useUrlState from "@ahooksjs/use-url-state";
 
@@ -10,7 +10,8 @@ export function List() {
   if (isLoading) return <Spin />;
 
   return (
-    <div className="flex max-w-5xl flex-wrap gap-6 p-8">
+    // <div className="flex max-w-5xl flex-wrap gap-4 p-4">
+    <div className="grid max-w-screen-lg grid-cols-1 place-content-stretch gap-8 p-8 lg:grid-cols-2 xl:grid-cols-3">
       {data?.map(({ name, id, types, sprite }) => (
         <PokemonPreview
           name={name}
@@ -21,5 +22,6 @@ export function List() {
         />
       ))}
     </div>
+    // </div>
   );
 }
