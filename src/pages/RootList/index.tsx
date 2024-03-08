@@ -1,13 +1,13 @@
 import { PokemonListPagination } from "../../components/Pagination";
 import { List } from "../../components/List";
-import { Space } from "antd";
+import { Flex } from "antd";
 
 const RootListPage = () => {
   return (
-    <Space align="center" direction="vertical">
+    <Flex vertical wrap="wrap" align="center" justify="space-evenly">
       <List />
       <PokemonListPagination />
-    </Space>
+    </Flex>
   );
 };
 export default RootListPage;
