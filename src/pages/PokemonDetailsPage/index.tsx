@@ -5,7 +5,7 @@ import { usePageMetadata } from "../../hooks/usePageMetadata";
 import { Layout } from "antd";
 
 function upperCaseName(name: string) {
-  return name[0].toUpperCase().concat(name.split("").splice(0, 1).join());
+  return name[0].toUpperCase()+name.slice(1);
 }
 
 function faviconHref(id: number) {
