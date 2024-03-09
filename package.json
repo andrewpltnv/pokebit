@@ -12,6 +12,7 @@
   "dependencies": {
     "@ahooksjs/use-url-state": "^3.5.1",
     "@reduxjs/toolkit": "^2.2.1",
+    "@wavesurfer/react": "^1.0.4",
     "ahooks": "^3.7.10",
     "antd": "^5.14.2",
     "axios": "^1.6.7",

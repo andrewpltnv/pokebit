@@ -2,8 +2,9 @@ import { Link } from "react-router-dom";
 import { PokemonInfoEntry } from "../app/types";
 import { Card, Image } from "antd";
 import { PokemonType } from "pokenode-ts";
+import SoundWave from "./audioUrls";
 
-export const renderTypes = (types: PokemonType[]) => {
+export const Types = (types: PokemonType[]) => {
   return types.map((slot) => (
     <Link to={`/type/${slot.type.name}`}>
       <span color="cyan" key={slot.type.name}>
@@ -14,12 +15,16 @@ export const renderTypes = (types: PokemonType[]) => {
 };
 
 const PokemonPreview = (pokemon: PokemonInfoEntry) => {
-  const { name, types, sprite, id } = pokemon;
+  const { name, types, sprite, id, cries } = pokemon;
+
+  const s = [];
+  cries?.latest && s.push(cries.latest);
+  cries?.legacy && s.push(cries.legacy);
 
   return (
     <Card
       cover={<Image src={`${sprite}`} />}
-      actions={renderTypes(types)}
+      actions={Types(types)}
       className="flex h-fit min-w-64 flex-col justify-end p-6"
       hoverable
     >
@@ -31,6 +36,7 @@ const PokemonPreview = (pokemon: PokemonInfoEntry) => {
           style={{ padding: "1rem" }}
         />
       </Link>
+      <SoundWave sounds={s} />
     </Card>
   );
 };
