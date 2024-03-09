@@ -17,9 +17,8 @@ export const Types = (types: PokemonType[]) => {
 const PokemonPreview = (pokemon: PokemonInfoEntry) => {
   const { name, types, sprite, id, cries } = pokemon;
 
-  const s = [];
-  cries?.latest && s.push(cries.latest);
-  cries?.legacy && s.push(cries.legacy);
+  const s = [cries!.latest, cries!.legacy];
+  console.log(s, cries);
 
   return (
     <Card
