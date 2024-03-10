@@ -5,7 +5,7 @@ import { RootLayout } from "./App.tsx";
 import { RouterProvider, createBrowserRouter, json } from "react-router-dom";
 import { Provider } from "react-redux";
 import { store } from "./app/store.ts";
-import PokemonDetailsPage from "./pages/PokemonDetailsPage";
+import PokemonDetailsPage from "./features/Pokemon/PokemonPage.tsx";
 import { ErrorElement } from "./components/ErrorElement.tsx";
 import RootListPage from "./pages/RootList/index.tsx";
 import { PokemonClient } from "pokenode-ts";

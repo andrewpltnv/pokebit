@@ -5,7 +5,7 @@ import { useToggle } from "ahooks";
 export const Footer = () => {
   const [isOpen, { toggle }] = useToggle(false);
   return (
-    <Layout.Footer className="sticky bottom-0  mt-4 inline-flex min-w-full justify-center bg-rose-500">
+    <Layout.Footer className=" mt-4 inline-flex min-w-full justify-center bg-rose-500">
       <Drawer
         placement="bottom"
         open={isOpen}
