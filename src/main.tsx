@@ -9,9 +9,8 @@ import PokemonDetailsPage from "./pages/PokemonDetailsPage";
 import { ErrorElement } from "./components/ErrorElement.tsx";
 import RootListPage from "./pages/RootList/index.tsx";
 import { PokemonClient } from "pokenode-ts";
-import { cropPokemonData } from "./app/utils.ts";
 import { ConfigProvider } from "antd";
-import { themeToken } from "./utils.ts";
+import { theme } from "./utils.ts";
 
 const client = new PokemonClient({ logs: true });
 
@@ -41,7 +40,7 @@ const router = createBrowserRouter([
         element: <PokemonDetailsPage />,
         loader: async ({ params }) => {
           const res = await client.getPokemonByName(`${params.name}`);
-          return json(cropPokemonData(res));
+          return json(res);
         },
       },
       {
@@ -55,7 +54,7 @@ const router = createBrowserRouter([
 ReactDOM.createRoot(root).render(
   <React.StrictMode>
     <Provider store={store}>
-      <ConfigProvider theme={{ token: themeToken }}>
+      <ConfigProvider theme={theme}>
         <RouterProvider router={router} />
       </ConfigProvider>
     </Provider>
