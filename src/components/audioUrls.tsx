@@ -1,75 +1,64 @@
 import Timeline from "wavesurfer.js/dist/plugins/timeline.esm.js";
-import { useWavesurfer } from "@wavesurfer/react";
-import { useCallback, useMemo, useRef, useState } from "react";
 import Hover from "wavesurfer.js/dist/plugins/hover.esm.js";
+import { useWavesurfer } from "@wavesurfer/react";
+import { useLayoutEffect, useMemo, useRef } from "react";
 
-// const audioUrls = [
-//   "/examples/audio/audio.wav",
-//   "/examples/audio/stereo.mp3",
-//   "/examples/audio/mono.mp3",
-//   "/examples/audio/librivox.mp3",
-// ];
-
-// const formatTime = (seconds: number) =>
-//   [seconds / 60, seconds % 60]
-//     .map((v) => `0${Math.floor(v)}`.slice(-2))
-//     .join(":");
-
-const SoundWave = ({ sounds }: { sounds: string[] }) => {
-  // const Timeline = useExternal("wavesurfer.js/dist/plugins/timelinej.esm.js");
+const SoundWave = ({ sound }: { sound?: string }) => {
   const containerRef = useRef(null);
-  const [urlIndex, setUrlIndex] = useState(0);
-
   const {
     wavesurfer,
-    isPlaying,
+    // isPlaying,
     // currentTime
   } = useWavesurfer({
-    container: containerRef,
-    height: 100,
-    waveColor: "rgb(200, 0, 200)",
-    progressColor: "rgb(100, 0, 100)",
+    height: 62,
+    normalize: true,
+    waveColor: "#ffffff",
+    progressColor: "#a51d2d",
+    cursorColor: "#000000",
+    cursorWidth: 4,
+    barWidth: 4,
+    barGap: 2,
+    barAlign: "bottom",
+    barRadius: 19,
+    barHeight: 2.2,
+    fillParent: true,
     interact: true,
-    url: sounds[urlIndex],
+    hideScrollbar: true,
+    autoScroll: true,
+    autoCenter: true,
+    sampleRate: 24000,
+    container: containerRef,
+
+    url: sound,
     plugins: useMemo(
       () => [
         Timeline.create(),
         Hover.create({
           lineColor: "#ff0000",
-          lineWidth: 2,
+          lineWidth: 4,
           labelBackground: "#555",
           labelColor: "#fff",
-          labelSize: "11px",
+          labelSize: "16px",
         }),
       ],
       [],
     ),
   });
 
-  const onUrlChange = useCallback(() => {
-    setUrlIndex((index) => (index + 1) % sounds.length);
-  }, [sounds.length]);
+  useLayoutEffect(() => {
+    // if (settled.current) return;
 
-  const onPlayPause = useCallback(() => {
-    wavesurfer && wavesurfer.playPause();
+    wavesurfer?.on("interaction", () => {
+      console.log("plaat");
+
+      wavesurfer.playPause();
+    });
+    wavesurfer?.on("finish", () => {
+      wavesurfer.play();
+    });
   }, [wavesurfer]);
 
-  return (
-    <div
-      style={{
-        margin: "1em 0",
-        display: "flex",
-        flexDirection: "column",
-        gap: "1em",
-      }}
-    >
-      <div ref={containerRef} />
-      <button onClick={onUrlChange}>Change audio</button>
-      <button onClick={onPlayPause} style={{ minWidth: "5em" }}>
-        {isPlaying ? "Pause" : "Play"}
-      </button>
-    </div>
-  );
+  return <div className="min-w-0" ref={containerRef} />;
 };
 
 export default SoundWave;

@@ -1,12 +1,10 @@
 import { Link } from "react-router-dom";
 import { PokemonInfoEntry } from "../../app/types";
-import { Card, Image, Space } from "antd";
+import { Avatar, Card, Space } from "antd";
 import SoundWave from "../../components/audioUrls";
 import { Type } from "../../components/Type";
-// import { usePermission } from "react-use";
 
-const PokemonCard = (pokemon: PokemonInfoEntry) => {
-  // const permission = usePermission({ name: "speaker" });
+const PokemonCardSm = (pokemon: PokemonInfoEntry) => {
   const {
     name,
     types,
@@ -17,14 +15,14 @@ const PokemonCard = (pokemon: PokemonInfoEntry) => {
 
   return (
     <Card
-      cover={<Image src={`${sprite}`} className="" />}
-      className="flex h-fit min-w-64 flex-col justify-end "
+      // className="flex h-fit min-w-64 flex-col justify-end "
       hoverable
     >
       <Link to={`/name/${name}`} className="">
         <Card.Meta
           style={{ padding: 12 }}
           title={<h3 className="text-xl">{name.toUpperCase()}</h3>}
+          avatar={<Avatar src={sprite} size="large" shape="square" />}
           description={
             <Space align="baseline" direction="horizontal">
               {types.map((slot) => (
@@ -39,4 +37,4 @@ const PokemonCard = (pokemon: PokemonInfoEntry) => {
   );
 };
 
-export default PokemonCard;
+export default PokemonCardSm;
