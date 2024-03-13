@@ -9,8 +9,6 @@ import PokemonDetailsPage from "./features/Pokemon/PokemonPage.tsx";
 import { ErrorElement } from "./components/ErrorElement.tsx";
 import RootListPage from "./pages/RootList/index.tsx";
 import { PokemonClient } from "pokenode-ts";
-import { ConfigProvider } from "antd";
-import { theme } from "./utils.ts";
 
 const client = new PokemonClient({ logs: true });
 
@@ -54,9 +52,9 @@ const router = createBrowserRouter([
 ReactDOM.createRoot(root).render(
   <React.StrictMode>
     <Provider store={store}>
-      <ConfigProvider theme={theme}>
-        <RouterProvider router={router} />
-      </ConfigProvider>
+      {/* <ConfigProvider theme={theme}> */}
+      <RouterProvider router={router} />
+      {/* </ConfigProvider> */}
     </Provider>
   </React.StrictMode>,
 );
