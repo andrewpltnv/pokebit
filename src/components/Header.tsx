@@ -1,18 +1,23 @@
 import { Link } from "react-router-dom";
-import { Affix, Layout } from "antd";
+import { twc } from "react-twc";
+import { CircleBackslashIcon } from "@radix-ui/react-icons";
+import { CommandDialog } from "./ui/command";
+import { ModeToggle } from "./ui/modeToggle";
 
 export const LogoHeading = () => (
-  <Link to="/" className="prose">
-    <h2 className="inline-block text-yellow-100 no-underline">Pokedex</h2>
-  </Link>
+	<Link to="/" className="relative">
+		<CircleBackslashIcon width={32} height={32} />
+	</Link>
 );
 
+const LayoutHeader = twc.div`w-full inline-flex gap-4 justify-evenly items-center px-4 min-w-full text-center h-16`;
+
 export function Header() {
-  return (
-    <Affix rootClassName="shadow-sm shadow-neutral-400">
-      <Layout.Header className="inline-flex min-w-full items-center justify-evenly gap-4 bg-rose-500 px-4 text-center">
-        <LogoHeading />
-      </Layout.Header>
-    </Affix>
-  );
+	return (
+		<LayoutHeader>
+			<LogoHeading />
+			<CommandDialog />
+			<ModeToggle />
+		</LayoutHeader>
+	);
 }
