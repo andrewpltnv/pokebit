@@ -1,34 +1,25 @@
-import { useGetPokemonsPerPageQuery } from "../app/api";
-import { Spin } from "antd";
-import useUrlState from "@ahooksjs/use-url-state";
 import { useAutoAnimate } from "@formkit/auto-animate/react";
-import ReactParallaxTilt from "react-parallax-tilt";
 import PokemonCardSm from "../features/Pokemon/PokemonCardSm";
+import type { PokemonInfoEntry } from "@/app/types";
 
-export function List() {
-  const [{ page }] = useUrlState({ page: 1 });
-  const [animate] = useAutoAnimate();
-  const { isLoading, data } = useGetPokemonsPerPageQuery({ page });
+export function List({ items }: { items: PokemonInfoEntry[] }) {
+	const [animate] = useAutoAnimate();
 
-  if (isLoading) return <Spin />;
-
-  return (
-    <div
-      ref={animate}
-      className="grid min-h-screen grid-cols-1 place-content-stretch gap-8 p-2 sm:grid-cols-2 lg:grid-cols-3 lg:p-8"
-    >
-      {data?.map(({ cries, name, id, types, sprite }) => (
-        <ReactParallaxTilt>
-          <PokemonCardSm
-            name={name}
-            sprite={sprite}
-            cries={cries}
-            id={id}
-            types={types}
-            key={name}
-          />
-        </ReactParallaxTilt>
-      ))}
-    </div>
-  );
+	return (
+		<div //TODO leverage styles to twc
+			ref={animate}
+			className="place-content-stretch gap-6 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 p-2 lg:p-8 min-h-screen"
+		>
+			{items.map(({ cries, name, id, types, sprite }) => (
+				<PokemonCardSm
+					name={name}
+					sprite={sprite}
+					cries={cries}
+					id={id}
+					types={types}
+					key={name}
+				/>
+			))}
+		</div>
+	);
 }

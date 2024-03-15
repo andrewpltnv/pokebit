@@ -1,20 +1,20 @@
-import { App, Layout } from "antd";
-import FloatButton from "antd/es/float-button/FloatButton";
+import { ThemeProvider } from "@/components/themeProvider";
 import { Outlet } from "react-router-dom";
 import { Header } from "./components/Header";
-import { Footer } from "./components/Footer";
+import { twc } from "react-twc";
+
+const Layout = twc(ThemeProvider).attrs({
+	defaultTheme: "dark",
+	storageKey: "vite-ui-theme",
+})``;
 
 function RootLayout() {
-  return (
-    <App>
-      <Layout className="flex min-h-svh flex-col ">
-        <Header />
-        <Outlet />
-        <Footer />
-        <FloatButton.BackTop />
-      </Layout>
-    </App>
-  );
+	return (
+		<Layout>
+			<Header />
+			<Outlet />
+		</Layout>
+	);
 }
 
 export { RootLayout };

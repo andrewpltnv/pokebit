@@ -1,57 +1,72 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: ["index.html", "./src/**/*.{js,jsx,ts,tsx,vue,html}"],
-  theme: {
-    extend: {
-      colors: {
-        primary: {
-          50: "#fffbfc",
-          100: "#fdf1f1",
-          200: "#fbdee0",
-          300: "#f8c5c8",
-          400: "#f4a5a9",
-          500: "#ef7d82",
-          600: "#e94e56",
-          700: "#de1b25",
-          800: "#7c0f15",
-          900: "#41080b",
-          950: "#2d0608",
-        },
-        white: {
-          50: "#ffffff",
-          100: "#ffffff",
-          200: "#ffffff",
-          300: "#ffffff",
-          400: "#ffffff",
-          500: "#ffffff",
-          600: "#ffffff",
-          700: "#ffffff",
-          800: "#808080",
-          900: "#333333",
-          950: "#1a1a1a",
-        },
-        gray: {
-          50: "#fbfbfb",
-          100: "#efefef",
-          200: "#dbdbdb",
-          300: "#bfbfbf",
-          400: "#9b9b9b",
-          500: "#707070",
-          600: "#3c3c3c",
-          700: "#000000",
-          800: "#000000",
-          900: "#000000",
-          950: "#000000",
-        },
-      },
-      container: {
-        center: true,
-        padding: {
-          DEFAULT: "0.5rem",
-          md: "1rem",
-        },
-      },
-    },
-  },
-  plugins: [require("@tailwindcss/typography")],
+	darkMode: ["class"],
+	content: ["./app/**/*.{ts,tsx}", "./src/**/*.{ts,tsx}"],
+	prefix: "",
+	theme: {
+		container: {
+			center: true,
+			padding: "2rem",
+			screens: {
+				"2xl": "1400px",
+			},
+		},
+		extend: {
+			colors: {
+				border: "hsl(var(--border))",
+				input: "hsl(var(--input))",
+				ring: "hsl(var(--ring))",
+				background: "hsl(var(--background))",
+				foreground: "hsl(var(--foreground))",
+				primary: {
+					DEFAULT: "hsl(var(--primary))",
+					foreground: "hsl(var(--primary-foreground))",
+				},
+				secondary: {
+					DEFAULT: "hsl(var(--secondary))",
+					foreground: "hsl(var(--secondary-foreground))",
+				},
+				destructive: {
+					DEFAULT: "hsl(var(--destructive))",
+					foreground: "hsl(var(--destructive-foreground))",
+				},
+				muted: {
+					DEFAULT: "hsl(var(--muted))",
+					foreground: "hsl(var(--muted-foreground))",
+				},
+				accent: {
+					DEFAULT: "hsl(var(--accent))",
+					foreground: "hsl(var(--accent-foreground))",
+				},
+				popover: {
+					DEFAULT: "hsl(var(--popover))",
+					foreground: "hsl(var(--popover-foreground))",
+				},
+				card: {
+					DEFAULT: "hsl(var(--card))",
+					foreground: "hsl(var(--card-foreground))",
+				},
+			},
+			borderRadius: {
+				lg: "var(--radius)",
+				md: "calc(var(--radius) - 2px)",
+				sm: "calc(var(--radius) - 4px)",
+			},
+			keyframes: {
+				"accordion-down": {
+					from: { height: "0" },
+					to: { height: "var(--radix-accordion-content-height)" },
+				},
+				"accordion-up": {
+					from: { height: "var(--radix-accordion-content-height)" },
+					to: { height: "0" },
+				},
+			},
+			animation: {
+				"accordion-down": "accordion-down 0.2s ease-out",
+				"accordion-up": "accordion-up 0.2s ease-out",
+			},
+		},
+	},
+	plugins: [import("tailwindcss-animate")],
 };
