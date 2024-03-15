@@ -1,26 +1,46 @@
-import { Pagination } from "antd";
 import useUrlState from "@ahooksjs/use-url-state";
+import {
+	Pagination,
+	PaginationContent,
+	PaginationEllipsis,
+	PaginationItem,
+	PaginationLink,
+	PaginationNext,
+	PaginationPrevious,
+} from "./ui/pagination";
+import { twc } from "react-twc";
+
+const PaginationWrapper = twc(Pagination)``;
 
 export const PokemonListPagination = () => {
-	// TODO place pagination below scrollableElement List
-	// TODO remove antd pagination and replace it with schadcn one
-	const [{ page }, setPagination] = useUrlState(
+	const [{ page }] = useUrlState(
 		{ page: 1 },
-		{ navigateMode: "push" },
+		{ navigateMode: "push", parseOptions: { parseNumbers: true } },
 	);
 
 	return (
-		<div className="m-auto text-3xl">
-			<Pagination
-				current={page}
-				total={1302}
-				showSizeChanger={false}
-				simple
-				pageSize={12}
-				onChange={(targetPage) => {
-					setPagination({ page: targetPage });
-				}}
-			/>
-		</div>
+		<PaginationWrapper>
+			<PaginationContent>
+				{page > 1 ? (
+					<PaginationItem>
+						<PaginationPrevious to={{ search: `page=${page - 1}` }} />
+					</PaginationItem>
+				) : (
+					<PaginationEllipsis />
+				)}
+				<PaginationItem>
+					<PaginationLink to="#" isActive>
+						{page}
+					</PaginationLink>
+				</PaginationItem>
+				{page < 1302 / 12 ? (
+					<PaginationItem>
+						<PaginationNext to={{ search: `page=${page + 1}` }} />
+					</PaginationItem>
+				) : (
+					<PaginationEllipsis />
+				)}
+			</PaginationContent>
+		</PaginationWrapper>
 	);
 };
