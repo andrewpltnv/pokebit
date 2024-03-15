@@ -4,7 +4,7 @@ import { Header } from "./components/Header";
 import { twc } from "react-twc";
 
 const Layout = twc(ThemeProvider).attrs({
-	defaultTheme: "dark",
+	defaultTheme: "light",
 	storageKey: "vite-ui-theme",
 })``;
 
