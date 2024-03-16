@@ -3,6 +3,8 @@ import "./index.css";
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { RootLayout } from "./App.tsx";
+import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import { RouterProvider, createBrowserRouter, json } from "react-router-dom";
 import { Provider } from "react-redux";
 import { store } from "./app/store.ts";
@@ -61,5 +63,7 @@ ReactDOM.createRoot(root).render(
 		<Provider store={store}>
 			<RouterProvider router={router} />
 		</Provider>
+		<Analytics />
+		<SpeedInsights />
 	</React.StrictMode>,
 );
