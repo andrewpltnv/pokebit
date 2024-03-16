@@ -49,7 +49,7 @@ const PokemonCardSm = ({ item }: { item: NamedAPIResource }) => {
 					</Button>
 				</CardHeader>
 				<CardDescription>
-					<img src={sprite || ""} alt={name} />
+					<img src={sprite || ""} loading="lazy" alt={name} />
 				</CardDescription>
 			</Link>
 			<CardContent className="hover:bg-secondary">
