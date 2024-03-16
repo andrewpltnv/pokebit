@@ -41,7 +41,7 @@ const PokemonCardSm = ({ item }: { item: NamedAPIResource }) => {
 	const { name, types, sprite, cries } = data;
 	console.log({ name, cries });
 	return (
-		<Card className="rounded-md min-w-52 max-h-[490px] text-center">
+		<Card className="rounded-md min-w-52 text-center">
 			<Link to={`/name/${name}`}>
 				<CardHeader>
 					<Button variant={"secondary"} asChild>
@@ -49,7 +49,13 @@ const PokemonCardSm = ({ item }: { item: NamedAPIResource }) => {
 					</Button>
 				</CardHeader>
 				<CardDescription>
-					<img src={sprite || ""} loading="lazy" alt={name} />
+					<img
+						src={sprite || ""}
+						loading="lazy"
+						decoding="async"
+						alt={name}
+						className="m-auto"
+					/>
 				</CardDescription>
 			</Link>
 			<CardContent className="hover:bg-secondary">
