@@ -35,7 +35,6 @@
 		"@reduxjs/toolkit": "^2.2.1",
 		"@wavesurfer/react": "^1.0.4",
 		"ahooks": "^3.7.10",
-		"antd": "^5.14.2",
 		"axios": "^1.6.7",
 		"axios-cache-interceptor": "^1.5.1",
 		"class-variance-authority": "^0.7.0",
