@@ -3,7 +3,7 @@ import type { PokemonType } from "pokenode-ts";
 const BASE_API_URL: string = "https://pokeapi.co/api/v2/";
 const RESULTS_LIMIT = 12;
 
-const PokeTypesMock = [
+export const PokeTypesMock = [
 	{ name: "normal", url: "https://pokeapi.co/api/v2/type/1/" },
 	{ name: "fighting", url: "https://pokeapi.co/api/v2/type/2/" },
 	{ name: "flying", url: "https://pokeapi.co/api/v2/type/3/" },
@@ -49,4 +49,4 @@ export const bgColors: Record<PokemonType["type"]["name"], string> = {
 	shadow: "bg-zink-200",
 };
 
-export { BASE_API_URL, RESULTS_LIMIT, PokeTypesMock };
+export { BASE_API_URL, RESULTS_LIMIT };

@@ -1,19 +1,24 @@
 import { Link } from "react-router-dom";
-import type { PokemonInfoEntry } from "../../app/types";
 import SoundWave from "../../components/audioUrls";
 import { Type } from "../../components/Type";
 import { twc } from "react-twc";
+import { useGetPokemonByNameQuery } from "@/app/api";
+import type { NamedAPIResource } from "pokenode-ts";
 
 const Avatar = twc.img`w-20 h-18 float-start`;
 
-const PokemonCardSm = (pokemon: PokemonInfoEntry) => {
+const PokemonCardSm = ({ item }: { item: NamedAPIResource }) => {
+	const { data, isLoading } = useGetPokemonByNameQuery({ name: item.name });
+
+	if (isLoading || !data) return <p>Loading...</p>;
+
 	const {
 		name,
 		types,
 		sprite,
 		// id,
 		cries,
-	} = pokemon;
+	} = data;
 
 	return (
 		<div className="flex flex-col bg-blend-color-dodge p-4 rounded-md min-w-52 ring-1 ring-inset ring-ring space-2">

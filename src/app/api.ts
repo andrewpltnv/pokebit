@@ -1,13 +1,11 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import type { NamedAPIResourceList } from "pokenode-ts";
+import type { NamedAPIResource, NamedAPIResourceList } from "pokenode-ts";
 import type { PokemonInfoEntry } from "./types";
 import { pipeResourceToPokemon } from "./utils";
 import { BASE_API_URL, RESULTS_LIMIT } from "./constants";
 
 const pipeResourceList = async (baseQueryReturnValue: NamedAPIResourceList) => {
-	return await Promise.all(
-		baseQueryReturnValue.results.map((res) => pipeResourceToPokemon(res)),
-	);
+	return baseQueryReturnValue.results;
 };
 
 export const api = createApi({
@@ -16,7 +14,7 @@ export const api = createApi({
 		baseUrl: BASE_API_URL,
 	}),
 	endpoints: (builder) => ({
-		getPokemonsPerPage: builder.query<PokemonInfoEntry[], { page: number }>({
+		getPokemonsPerPage: builder.query<NamedAPIResource[], { page: number }>({
 			query: ({ page = 1 }) =>
 				`pokemon?offset=${--page * RESULTS_LIMIT}&limit=${RESULTS_LIMIT}`,
 			transformResponse: pipeResourceList,
@@ -28,4 +26,4 @@ export const api = createApi({
 	}),
 });
 
-export const { useGetPokemonsPerPageQuery } = api;
+export const { useGetPokemonsPerPageQuery, useGetPokemonByNameQuery } = api;
