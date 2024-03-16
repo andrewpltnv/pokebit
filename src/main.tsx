@@ -21,15 +21,16 @@ const client = new PokemonClient({ logs: false });
 const router = createBrowserRouter([
 	{
 		element: <RootLayout />,
-		errorElement: <ErrorElement />,
 		children: [
 			{
 				path: "/",
 				index: true,
+				errorElement: <ErrorElement />,
 				element: <RootListPage />,
 			},
 			{
 				path: "/type/:type",
+				errorElement: <ErrorElement />,
 				element: <ByTypeListPage />,
 				loader: async ({ params }) => {
 					const typeInfo = await client.getTypeByName(`${params.type}`);
@@ -40,6 +41,7 @@ const router = createBrowserRouter([
 			{
 				//TODO PokemonProfilePage
 				path: "/name/:name",
+				errorElement: <ErrorElement />,
 				element: <PokemonProfilePage />,
 				loader: async ({ params }) => {
 					const res = await client.getPokemonByName(`${params.name}`);

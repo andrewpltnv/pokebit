@@ -1,20 +1,18 @@
-import Result from "antd/es/result/index";
-import Button from "antd/es/button/button";
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { Card, CardFooter, CardHeader, CardTitle } from "./ui/card";
+import { Button } from "./ui/button";
 
 export const ErrorElement = () => {
-  const navigate = useNavigate();
-
-  return (
-    <Result
-      status="404"
-      title="404"
-      subTitle="Sorry, the page you visited does not exist."
-      extra={
-        <Button onClick={() => navigate(-1)} type="primary">
-          Back Home
-        </Button>
-      }
-    />
-  );
+	return (
+		<Card className="">
+			<CardHeader>
+				<CardTitle>Sorry, the page you visited does not exist.</CardTitle>
+			</CardHeader>
+			<CardFooter>
+				<Button asChild>
+					<Link to={".."}>Back Home</Link>
+				</Button>
+			</CardFooter>
+		</Card>
+	);
 };

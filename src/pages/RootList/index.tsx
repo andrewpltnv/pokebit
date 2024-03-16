@@ -10,9 +10,10 @@ const RootListPage = () => {
 	if (isLoading || !data) return <p>Loading...</p>;
 
 	return (
-		<div className="flex flex-col gap-4 p-4 w-full">
+		<div className="flex flex-col gap-4 mx-auto p-6 max-w-7xl">
 			<PokemonListPagination />
 			<List items={data} />
+			<PokemonListPagination />
 		</div>
 	);
 };

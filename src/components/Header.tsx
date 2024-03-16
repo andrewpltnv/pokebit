@@ -5,11 +5,9 @@ import { ModeToggle } from "./ui/modeToggle";
 import { Button } from "./ui/button";
 import { SearchCommandMenu } from "@/features/Search/SearchCommandMenu";
 
-export const LogoHeading = () => (
-	<Button asChild variant="outline" size="icon">
-		<Link to="/" className="relative">
-			<CircleBackslashIcon className="w-4 h4" />
-		</Link>
+export const ButtonWrapper = ({ children }: { children: React.ReactNode }) => (
+	<Button asChild size="icon">
+		{children}
 	</Button>
 );
 
@@ -18,9 +16,15 @@ const LayoutHeader = twc.div`w-full inline-flex gap-4 justify-evenly items-cente
 export function Header() {
 	return (
 		<LayoutHeader>
-			<LogoHeading />
+			<ButtonWrapper>
+				<Link to="/" className="relative">
+					<CircleBackslashIcon className="w-4 h4" />
+				</Link>
+			</ButtonWrapper>
 			<SearchCommandMenu />
-			<ModeToggle />
+			<ButtonWrapper>
+				<ModeToggle />
+			</ButtonWrapper>
 		</LayoutHeader>
 	);
 }

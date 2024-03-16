@@ -3,14 +3,16 @@ import {
 	Pagination,
 	PaginationContent,
 	PaginationEllipsis,
-	PaginationItem,
-	PaginationLink,
 	PaginationNext,
 	PaginationPrevious,
 } from "./ui/pagination";
 import { twc } from "react-twc";
+import { Button } from "./ui/button";
 
-const PaginationWrapper = twc(Pagination)``;
+const PaginationItemWrapper = twc(Button).attrs({
+	asChild: true,
+	variant: "outline",
+})`text-lg`;
 
 export const PokemonListPagination = () => {
 	const [{ page }] = useUrlState(
@@ -19,28 +21,26 @@ export const PokemonListPagination = () => {
 	);
 
 	return (
-		<PaginationWrapper>
+		<Pagination>
 			<PaginationContent>
 				{page > 1 ? (
-					<PaginationItem>
+					<PaginationItemWrapper>
 						<PaginationPrevious to={{ search: `page=${page - 1}` }} />
-					</PaginationItem>
+					</PaginationItemWrapper>
 				) : (
 					<PaginationEllipsis />
 				)}
-				<PaginationItem>
-					<PaginationLink to="#" isActive>
-						{page}
-					</PaginationLink>
-				</PaginationItem>
+				<PaginationItemWrapper>
+					<span>{page}</span>
+				</PaginationItemWrapper>
 				{page < 1302 / 12 ? (
-					<PaginationItem>
+					<PaginationItemWrapper>
 						<PaginationNext to={{ search: `page=${page + 1}` }} />
-					</PaginationItem>
+					</PaginationItemWrapper>
 				) : (
 					<PaginationEllipsis />
 				)}
 			</PaginationContent>
-		</PaginationWrapper>
+		</Pagination>
 	);
 };

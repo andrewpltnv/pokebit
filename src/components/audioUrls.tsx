@@ -6,7 +6,7 @@ import { useLayoutEffect, useMemo, useRef } from "react";
 const SoundWave = ({ sound }: { sound?: string }) => {
 	const containerRef = useRef(null);
 	const { wavesurfer } = useWavesurfer({
-		height: 24,
+		height: 32,
 		normalize: true,
 		waveColor: "#43a4ff94",
 		progressColor: "#a51d2d",
