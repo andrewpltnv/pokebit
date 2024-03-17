@@ -10,7 +10,7 @@ export const SearchCommandMenu = () => {
 		<CommandMenu
 			keyToSequence="k"
 			items={PokeTypesMock}
-			handleSubmit={({ name }) => navigate(`/type/${name}`)}
+			handleSubmit={(link) => navigate(link)}
 			placeholder={
 				<>
 					Press{" "}

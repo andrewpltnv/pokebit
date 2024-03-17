@@ -26,7 +26,7 @@ export function CommandMenu({
 	placeholder: ReactElement;
 	keyToSequence: string;
 	items: NamedAPIResource[];
-	handleSubmit: (item: NamedAPIResource) => void;
+	handleSubmit: (link: string) => void;
 }) {
 	const [search, setSearch] = useState("");
 	const { open, setOpen } = useKeySequenceToggle(keyToSequence);
@@ -50,8 +50,14 @@ export function CommandMenu({
 								key={url}
 								value={name}
 								onSelect={() => {
-									handleSubmit({ name, url });
 									setOpen(false);
+									setSearch("");
+									handleSubmit(`type/${name}`);
+								}}
+								onClick={() => {
+									setOpen(false);
+									setSearch("");
+									handleSubmit(`type/${name}`);
 								}}
 							>
 								<Type typeName={name} />
