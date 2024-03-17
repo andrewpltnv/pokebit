@@ -55,6 +55,9 @@ const PaginationLink = ({
 			}),
 			className,
 		)}
+		onClick={() => {
+			window.scrollTo({ top: 0, behavior: "smooth" });
+		}}
 		{...props}
 	/>
 );

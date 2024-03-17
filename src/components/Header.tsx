@@ -5,11 +5,11 @@ import { ModeToggle } from "./ui/modeToggle";
 import { Button } from "./ui/button";
 import { SearchCommandMenu } from "@/features/Search/SearchCommandMenu";
 
-export const ButtonWrapper = ({ children }: { children: React.ReactNode }) => (
-	<Button asChild size="icon">
-		{children}
-	</Button>
-);
+export const ButtonWrapper = twc(Button).attrs({
+	asChild: true,
+	variant: "outline",
+	size: "icon",
+})``;
 
 const LayoutHeader = twc.div`w-full inline-flex gap-4 justify-evenly items-center px-4 min-w-full text-center h-16`;
 
