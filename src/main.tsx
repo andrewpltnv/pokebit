@@ -39,7 +39,6 @@ const router = createBrowserRouter([
 				},
 			},
 			{
-				//TODO PokemonProfilePage
 				path: "/name/:name",
 				errorElement: <ErrorElement />,
 				element: <PokemonProfilePage />,

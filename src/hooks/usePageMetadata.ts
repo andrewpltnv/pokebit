@@ -1,13 +1,12 @@
 import { useFavicon, useTitle } from "ahooks";
 
 export function usePageMetadata({
-  title,
-  favicon,
+	title,
+	favicon,
 }: {
-  title: string;
-  favicon: string;
+	title: string;
+	favicon: string;
 }) {
-  useFavicon(favicon);
-  useTitle(title, { restoreOnUnmount: true });
-  console.log("Metadata settled");
+	useFavicon(favicon);
+	useTitle(title, { restoreOnUnmount: true });
 }

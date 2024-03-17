@@ -25,14 +25,18 @@ import { Link, useLoaderData } from "react-router-dom";
 const PokemonProfilePage = () => {
 	const data = useLoaderData() as Pokemon;
 	if (!data) return <p>Loading...</p>;
+
 	const { abilities, types, sprites, moves, name, id } = data;
+
 	const images = [
 		sprites.other?.["official-artwork"].front_default,
+		faviconHref(id),
 		sprites.other?.dream_world.front_default,
 		sprites.other?.home.front_default,
 		sprites.front_default,
 	];
-	usePageMetadata({ title: name, favicon: faviconHref(id) });
+
+	usePageMetadata({ title: name.toUpperCase(), favicon: faviconHref(id) });
 
 	return (
 		<div className="flex flex-col gap-4 p-4 w-full">
@@ -67,10 +71,14 @@ const PokemonProfilePage = () => {
 									key={`${image} + ${index + 1}`}
 									className="md:basis-1/2 lg:basis-1/3"
 								>
-									<Card>
-										<CardContent className="flex justify-center items-center p-4">
-											<img src={image || ""} alt={name} />
-										</CardContent>
+									<Card className="grid min-h-full">
+										<img
+											src={image || ""}
+											alt={name}
+											loading="lazy"
+											decoding="async"
+											className="m-auto"
+										/>
 									</Card>
 								</CarouselItem>
 							))}
