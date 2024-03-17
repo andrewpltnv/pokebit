@@ -8,7 +8,10 @@ export const Type = ({
 }: { typeName: PokemonType["type"]["name"] }) => {
 	return (
 		<Button asChild variant="ghost">
-			<Link to={`/type/${typeName}`} className={`${bgColors[typeName]} `}>
+			<Link
+				to={`/type/${typeName}`}
+				className={`${bgColors[typeName]} dark:text-primary-foreground`}
+			>
 				{typeName}
 			</Link>
 		</Button>
