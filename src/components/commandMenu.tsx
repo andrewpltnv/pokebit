@@ -51,9 +51,8 @@ export function CommandMenu({
 								value={name}
 								onSelect={() => {
 									handleSubmit({ name, url });
-									setSearch("");
+									setOpen(false);
 								}}
-								asChild
 							>
 								<Type typeName={name} />
 							</CommandItem>
