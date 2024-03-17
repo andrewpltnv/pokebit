@@ -18,7 +18,7 @@ const SoundWave = ({ sound }: { sound?: string }) => {
 		barRadius: 19,
 		barHeight: 2.2,
 		fillParent: true,
-		interact: false,
+		interact: true,
 		hideScrollbar: true,
 		autoScroll: true,
 		autoCenter: true,
