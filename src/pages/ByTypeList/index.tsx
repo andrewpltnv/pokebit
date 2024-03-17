@@ -6,7 +6,6 @@ const ByTypeListPage = () => {
 	const data = useLoaderData() as Type;
 	const pokemons = data.pokemon.map((p) => p.pokemon);
 
-	console.log(pokemons);
 	if (!pokemons) {
 		return <p>Loading...</p>;
 	}

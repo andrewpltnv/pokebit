@@ -11,6 +11,7 @@ import { twc } from "react-twc";
 import { useKeySequenceToggle } from "@/hooks/useKeySequenceToggle";
 import { useState, type ReactElement } from "react";
 import type { NamedAPIResource } from "pokenode-ts";
+import { Type } from "./Type";
 
 const SearchToggleButton = twc(Button).attrs({
 	variant: "outline",
@@ -52,8 +53,9 @@ export function CommandMenu({
 									handleSubmit({ name, url });
 									setSearch("");
 								}}
+								asChild
 							>
-								{name}
+								<Type typeName={name} />
 							</CommandItem>
 						))}
 					</CommandGroup>

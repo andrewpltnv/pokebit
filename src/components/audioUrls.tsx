@@ -18,13 +18,12 @@ const SoundWave = ({ sound }: { sound?: string }) => {
 		barRadius: 19,
 		barHeight: 2.2,
 		fillParent: true,
-		interact: true,
+		interact: false,
 		hideScrollbar: true,
 		autoScroll: true,
 		autoCenter: true,
 		sampleRate: 24000,
 		container: containerRef,
-
 		url: sound,
 		plugins: useMemo(
 			() => [
@@ -46,7 +45,7 @@ const SoundWave = ({ sound }: { sound?: string }) => {
 			wavesurfer.playPause();
 		});
 		wavesurfer?.on("finish", () => {
-			wavesurfer.play();
+			// wavesurfer.play();
 		});
 	}, [wavesurfer]);
 

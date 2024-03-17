@@ -1,9 +1,11 @@
 import { Type } from "@/components/Type";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import {
 	Card,
 	CardContent,
 	CardDescription,
+	CardFooter,
 	CardHeader,
 	CardTitle,
 } from "@/components/ui/card";
@@ -16,73 +18,87 @@ import {
 } from "@/components/ui/carousel";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { usePageMetadata } from "@/hooks/usePageMetadata";
+import { faviconHref } from "@/utils";
 import type { Pokemon } from "pokenode-ts";
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 
 const PokemonProfilePage = () => {
 	const data = useLoaderData() as Pokemon;
 	if (!data) return <p>Loading...</p>;
-	const { abilities, types, sprites, moves, name } = data;
+	const { abilities, types, sprites, moves, name, id } = data;
 	const images = [
-		sprites.front_default,
-		sprites.other?.home.front_default,
-		sprites.other?.dream_world.front_default,
 		sprites.other?.["official-artwork"].front_default,
+		sprites.other?.dream_world.front_default,
+		sprites.other?.home.front_default,
+		sprites.front_default,
 	];
-	usePageMetadata({ title: name, favicon: images[0] || "" });
+	usePageMetadata({ title: name, favicon: faviconHref(id) });
 
 	return (
-		<Card className="m-auto w-2/4">
-			<CardHeader>
-				<CardTitle>
-					<h1 className="text-5xl">{name.toUpperCase()}</h1>
-					<div>
-						{types.map((t) => (
-							<Type typeName={t.type.name} />
-						))}
-					</div>
-				</CardTitle>
-				<CardDescription>
-					<ScrollArea className="">
-						{abilities.map((a) => (
-							<Badge variant={"secondary"}>{a.ability.name}</Badge>
-						))}
-					</ScrollArea>
-				</CardDescription>
-			</CardHeader>
-			<CardContent>
-				<Carousel
-					opts={{
-						align: "start",
-					}}
-					className="w-full max-w-sm"
-				>
-					<CarouselContent>
-						{images.map((image, index) => (
-							<CarouselItem
-								key={`${image} + ${index + 1}`}
-								className="md:basis-1/2 lg:basis-1/3"
-							>
-								<div className="p-1">
+		<div className="flex flex-col gap-4 p-4 w-full">
+			<Button asChild>
+				<Link to={".."}>Back</Link>
+			</Button>
+			<Card className="m-auto container">
+				<CardHeader>
+					<CardTitle>
+						<h2 className="text-3xl">{name.toUpperCase()}</h2>
+					</CardTitle>
+					<CardDescription className="space-x-2">
+						<div>
+							{types.map((t) => (
+								<Type typeName={t.type.name} />
+							))}
+						</div>
+					</CardDescription>
+				</CardHeader>
+				<CardContent>
+					<Carousel
+						opts={{
+							align: "center",
+							loop: true,
+							duration: 10,
+						}}
+						className="w-full"
+					>
+						<CarouselContent>
+							{images.map((image, index) => (
+								<CarouselItem
+									key={`${image} + ${index + 1}`}
+									className="md:basis-1/2 lg:basis-1/3"
+								>
 									<Card>
 										<CardContent className="flex justify-center items-center p-4">
 											<img src={image || ""} alt={name} />
 										</CardContent>
 									</Card>
-								</div>
-							</CarouselItem>
-						))}
-					</CarouselContent>
-					<CarouselPrevious />
-					<CarouselNext />
-				</Carousel>
-			</CardContent>
-			<ScrollArea className="h-28">
-				{moves.map((m) => (
-					<Badge variant={"secondary"}>{m.move.name}</Badge>
-				))}
-			</ScrollArea>
-		</Card>
+								</CarouselItem>
+							))}
+						</CarouselContent>
+						<CarouselPrevious />
+						<CarouselNext />
+					</Carousel>
+				</CardContent>
+				<CardFooter className="flex flex-col gap-4">
+					<div>
+						<h5>Abilities:</h5>
+						<ScrollArea className="space-x-2">
+							{abilities.map((a) => (
+								<Badge variant={"secondary"}>{a.ability.name}</Badge>
+							))}
+						</ScrollArea>
+					</div>
+					<div>
+						<h5>Moves:</h5>
+						<ScrollArea className="space-x-2">
+							{moves.map((m) => (
+								<Badge variant={"secondary"}>{m.move.name}</Badge>
+							))}
+						</ScrollArea>
+					</div>
+				</CardFooter>
+			</Card>
+		</div>
 	);
 };
 
