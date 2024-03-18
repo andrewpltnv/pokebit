@@ -20,7 +20,7 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { usePageMetadata } from "@/hooks/usePageMetadata";
 import { faviconHref } from "@/utils";
 import type { Pokemon } from "pokenode-ts";
-import { Link, useLoaderData } from "react-router-dom";
+import { useLoaderData } from "react-router-dom";
 
 const PokemonProfilePage = () => {
 	const data = useLoaderData() as Pokemon;
@@ -41,7 +41,8 @@ const PokemonProfilePage = () => {
 	return (
 		<div className="flex flex-col gap-4 p-4 w-full">
 			<Button asChild>
-				<Link to={".."}>Back</Link>
+				{/* biome-ignore lint/a11y/useKeyWithClickEvents: <explanation> */}
+				<span onClick={() => window.history.back()}>Back</span>
 			</Button>
 			<Card className="m-auto container">
 				<CardHeader>
