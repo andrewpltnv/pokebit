@@ -42,7 +42,10 @@ const PokemonCardSm = ({ item }: { item: NamedAPIResource }) => {
 
 	return (
 		<Card className="rounded-md min-w-52 text-center">
-			<Link to={`/name/${name}`}>
+			<Link
+				onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+				to={`/name/${name}`}
+			>
 				<CardHeader>
 					<Button variant={"secondary"} asChild>
 						<CardTitle className="text-2xl">{name.toUpperCase()}</CardTitle>
