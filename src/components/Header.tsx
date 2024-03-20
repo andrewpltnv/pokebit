@@ -17,7 +17,7 @@ export function Header() {
 	return (
 		<LayoutHeader>
 			<ButtonWrapper>
-				<Link to="/" className="relative">
+				<Link to="/" className="relative" aria-label="Home">
 					<CircleBackslashIcon className="w-4 h4" />
 				</Link>
 			</ButtonWrapper>

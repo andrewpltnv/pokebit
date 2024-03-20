@@ -58,10 +58,12 @@ const PokemonCardSm = ({ item }: { item: NamedAPIResource }) => {
 						decoding="async"
 						alt={name}
 						className="m-auto"
+						width={284}
+						height={284}
 					/>
 				</CardDescription>
 			</Link>
-			<CardContent className="hover:bg-secondary">
+			<CardContent className="hover:bg-secondary m-2 p-2 rounded-md">
 				<SoundWave sound={cries?.latest} />
 			</CardContent>
 			<CardFooter className="flex justify-evenly">

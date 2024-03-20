@@ -49,7 +49,7 @@ const SoundWave = ({ sound }: { sound?: string }) => {
 		});
 	}, [wavesurfer]);
 
-	return <div className="min-w-0" ref={containerRef} />;
+	return <div className="min-w-0 h-8" ref={containerRef} />;
 };
 
 export default SoundWave;
