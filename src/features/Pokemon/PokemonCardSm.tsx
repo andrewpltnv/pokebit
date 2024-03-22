@@ -19,21 +19,21 @@ const PokemonCardSm = ({ item }: { item: NamedAPIResource }) => {
 
 	if (isLoading || !data)
 		return (
-			<Card className="flex flex-col justify-between min-w-52 h-[490px]">
+			<Card className="flex h-[490px] min-w-52 flex-col justify-between">
 				<CardHeader>
 					<CardTitle>
-						<Skeleton className="mx-auto w-3/4 h-8" />
+						<Skeleton className="mx-auto h-8 w-3/4" />
 					</CardTitle>
 					<CardDescription>
-						<Skeleton className="m-auto w-full h-72" />
+						<Skeleton className="m-auto h-72 w-full" />
 					</CardDescription>
 				</CardHeader>
 				<CardContent>
-					<Skeleton className="w-full h-8" />
+					<Skeleton className="h-8 w-full" />
 				</CardContent>
 				<CardFooter className="flex justify-evenly">
-					<Skeleton className="w-12 h-8" />
-					<Skeleton className="w-12 h-8" />
+					<Skeleton className="h-8 w-12" />
+					<Skeleton className="h-8 w-12" />
 				</CardFooter>
 			</Card>
 		);
@@ -41,14 +41,13 @@ const PokemonCardSm = ({ item }: { item: NamedAPIResource }) => {
 	const { name, types, sprite, cries } = data;
 
 	return (
-		<Card className="rounded-md min-w-52 text-center">
-			<Link
-				onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-				to={`/name/${name}`}
-			>
+		<Card className="h-[490px] min-w-52 rounded-md text-center">
+			<Link to={`/name/${name}`}>
 				<CardHeader>
 					<Button variant={"secondary"} asChild>
-						<CardTitle className="text-2xl">{name.toUpperCase()}</CardTitle>
+						<CardTitle className="truncate px-1 text-2xl">
+							{name.toUpperCase()}
+						</CardTitle>
 					</Button>
 				</CardHeader>
 				<CardDescription>
@@ -63,7 +62,7 @@ const PokemonCardSm = ({ item }: { item: NamedAPIResource }) => {
 					/>
 				</CardDescription>
 			</Link>
-			<CardContent className="hover:bg-secondary m-2 p-2 rounded-md">
+			<CardContent className="m-2 rounded-md p-2 hover:bg-secondary">
 				<SoundWave sound={cries?.latest} />
 			</CardContent>
 			<CardFooter className="flex justify-evenly">
